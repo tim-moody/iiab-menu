@@ -1,0 +1,18 @@
+[
+"en-kalite-ess", // set to use kalite
+"en-wikipedia_for_schools",
+"en-osm",
+"en-GCF2015",
+"en-wikivoyage",
+"en-wiktionary",
+"en-ck12",
+"en-ebooks",
+"en-afristory",
+"en-infonet",
+"en-practical_action",
+"en-medline_plus",
+"en-hesperian_health",
+"en-musictheory"
+]
+
+// Also has file share and applications
