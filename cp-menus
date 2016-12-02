@@ -1,0 +1,22 @@
+#!/bin/bash
+
+WWWROOT=/var/www/html
+MENUDIR=$WWWROOT/iiab-menu
+mkdir -p $MENUDIR
+
+mkdir -p $MENUDIR/local/menu-defs
+mkdir -p $MENUDIR/local/html
+
+rsync -av common $WWWROOT
+rsync -av menu-files $MENUDIR
+rsync -av samples $MENUDIR
+
+# copy sample index file if none exists
+if [ ! -e $MENUDIR/index.html ]; then
+    cp samples/index-all.html $MENUDIR/index.html
+fi
+
+# restore modified files from local
+cp -rf $MENUDIR/local/* $MENUDIR/menu-files
+
+echo 'files copied'
