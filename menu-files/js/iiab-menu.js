@@ -4,7 +4,7 @@
 // debug
 
 if(typeof debug == 'undefined') {
-    debug = false;
+	debug = false;
 }
 
 // constants
@@ -28,10 +28,10 @@ var i;
 
 // get name to instance index for zim files
 var getZimVersions = $.getJSON(zimVersionIdx)
-  	.done(function( data ) {
-  		//consoleLog(data);
-  	zimVersions = data;})
-  	.fail(jsonErrhandler);
+.done(function( data ) {
+	//consoleLog(data);
+zimVersions = data;})
+.fail(jsonErrhandler);
 
 $.when(scaffold, getZimVersions).then(procMenu);
 
@@ -69,11 +69,11 @@ function getMenuDef(menuItem) {
 	.done(function( data ) {
 		menuDefs[menuItem] = data;
 		menuDefs[menuItem]['menu_item_name'] = menuItem;
-	  menuDefs[menuItem]['add_html'] = "";
-	  menuDefs[menuItem]['menu_id'] = menuId;
-    module = menuDefs[menuItem];
-    procMenuItem(module);
-    checkMenuDone();
+		menuDefs[menuItem]['add_html'] = "";
+		menuDefs[menuItem]['menu_id'] = menuId;
+		module = menuDefs[menuItem];
+		procMenuItem(module);
+		checkMenuDone();
 	})
 	.fail(function (jqXHR, textStatus, errorThrown){
 		var menuHtml = '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' + menuItem + ' - file not found or improperly formatted</div>';
@@ -85,23 +85,23 @@ function getMenuDef(menuItem) {
 }
 
 function procMenuItem(module) {
-  var menuHtml = "";
-  var langClass = "";
+	var menuHtml = "";
+	var langClass = "";
 
-  var menuItemDivId = "#" + module['menu_id'];
+	var menuItemDivId = "#" + module['menu_id'];
 	consoleLog(module);
 	if (module['intended_use'] == "zim")
-	  menuHtml += calcZimLink(module);
+	menuHtml += calcZimLink(module);
 	else if (module['intended_use'] == "html")
 		menuHtml += calcHtmlLink(module);
   else if (module['intended_use'] == "webroot")
-    menuHtml += calcWebrootLink(module);
+	  menuHtml += calcWebrootLink(module);
 	else if (module['intended_use'] == "kalite")
 		menuHtml += calcKaliteLink(module);
 	else if (module['intended_use'] == "osm")
 		menuHtml += calcOsmLink(module);
 	else
-		menuHtml += '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' +  menuItem + ' - unknown module type</div>';
+  	menuHtml += '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' +  menuItem + ' - unknown module type</div>';
 
 	langClass = 'lang_' + module.lang;
 	$(menuItemDivId).addClass(langClass);
@@ -124,10 +124,10 @@ function calcHtmlLink(module){
 }
 
 function calcWebrootLink(module){
-        var href = webrootBaseUrl + module.moddir;
+	var href = webrootBaseUrl + module.moddir;
 
-        var html = calcLink(href,module);
-        return html
+	var html = calcLink(href,module);
+	return html
 }
 
 function calcKaliteLink(module){
@@ -151,7 +151,7 @@ function calcLink(href,module){
 	menuDefs[module.menu_item_name]['href'] = href;
 
 	if (module.hasOwnProperty("start_url"))
-	  startPage = href + '/' + module['start_url'];
+	startPage = href + '/' + module['start_url'];
 
 	var html = '<div style="display: table;"><div style="display: table-row;">';
 	html+='<div class="content-icon"><a href="' + startPage + '"><img src="' + imageUrl + module.logo_url + '" alt="' + module.title + '"></div>';
@@ -159,7 +159,7 @@ function calcLink(href,module){
 	html+='<h2><a href="' + startPage + '">' + module.title + '</a></h2>';
 	html+='<p>' + module.description + '</p>';
 	if (module.hasOwnProperty("apk_file"))
-	  html+='<p>Click here to download <a href="' + apkBaseUrl + module.apk_file + '">' + module.apk_file + '</a></p>';
+	html+='<p>Click here to download <a href="' + apkBaseUrl + module.apk_file + '">' + module.apk_file + '</a></p>';
 	consoleLog('href = ' + href);
 	html += '<div id="' + module.menu_id + '-htmlf"></div>'; // scaffold for extra html
 	html+='</div></div></div>';
@@ -182,12 +182,12 @@ function getExtraHtml(module) {
 			//menuDefs[module.menu_item_name]['add_html'] = data;
 			consoleLog('in get extra done');
 			var add_html = data;
-	    var re = new RegExp('##HREF-BASE##', 'g');
-	    add_html = add_html.replace(re, module.href);
-	    menuItemHtmlfDivId = "#" + module.menu_id + '-htmlf';
-	    consoleLog(menuItemHtmlfDivId);
-	    $(menuItemHtmlfDivId).html(add_html);
-	    checkMenuDone();
+			var re = new RegExp('##HREF-BASE##', 'g');
+			add_html = add_html.replace(re, module.href);
+			menuItemHtmlfDivId = "#" + module.menu_id + '-htmlf';
+			consoleLog(menuItemHtmlfDivId);
+			$(menuItemHtmlfDivId).html(add_html);
+			checkMenuDone();
 		})
 		.fail(checkMenuDone);
 		return resp;
@@ -195,31 +195,92 @@ function getExtraHtml(module) {
 }
 
 function checkMenuDone(){
-  ajaxCallCount -= 1;
-  consoleLog (ajaxCallCount);
-  if (ajaxCallCount == 0){
-    $('a').click(trackUsage);
-    //alert ("menu done");
-  }
+	ajaxCallCount -= 1;
+	consoleLog (ajaxCallCount);
+	if (ajaxCallCount == 0){
+		$('a').click(trackUsage);
+		//alert ("menu done");
+	}
 }
 
 function trackUsage(event){
-  event.preventDefault();
-  //alert("in track usage");
-  var url = $(this).attr('href');
-  consoleLog (url);
-  $.ajax({
-			method: "GET",
-			async: true,
-			url: menuServicesUrl + "track_usage.php",
-			dataType: 'html',
-			data: { link_clicked: url }
-		})
-		.always(function( data ) {
-			window.location = url;
-		});
+	event.preventDefault();
+	//alert("in track usage");
+	var url = $(this).attr('href');
+	consoleLog (url);
+	$.ajax({
+		method: "GET",
+		async: true,
+		url: menuServicesUrl + "track_usage.php",
+		dataType: 'html',
+		data: { link_clicked: url }
+	})
+	.always(function( data ) {
+		window.location = url;
+	});
 }
 
+$('#btn-rating-input').on('click', function() {
+	$('#rating-input').rating('refresh', {
+		showClear:true,
+		disabled: !$('#rating-input').attr('disabled')
+	});
+});
+
+$('#btn-feedback').click(function(){
+	$('#feedbackModal').modal('show');
+});
+
+$('#btn-submitFeedback').click(function(){
+	if (validateFeedback())
+	sendFeedback();
+});
+
+// clear feedback message and enable button for showing modal
+$('#feedbackModal').on('show.bs.modal', function () {
+	$('#feedbackMessageModal').html("");
+	$("#btn-submitFeedback").prop("disabled",false);
+
+});
+
+// we need something in comments and a name would be nice
+function validateFeedback (){
+	if ($("#comments-text").val() == ""){
+		$('#feedbackMessageModal').html("Please give us some feedback.");
+		return false;
+	}
+	if ($("#feedback-name").val() == ""){
+		$('#feedbackMessageModal').html("Please tell us your name.");
+		return false;
+	}
+	return true;
+}
+
+function sendFeedback(){
+	$("#btn-submitFeedback").prop("disabled",true);
+	var resp = $.ajax({
+		url: menuServicesUrl + 'record_feedback.php',
+		type: 'post',
+		dataType: 'json',
+	data: $('form#feedbackForm').serialize()})
+	.success (function(data) {
+		console.log(data);
+		if (data == "SUCCESS"){
+			//alert ("Thanks for submitting your feedback");
+			$('#feedbackMessageModal').html("Thanks for submitting your feedback");
+			setTimeout(function() {$('#feedbackModal').modal('hide');}, 3000);
+		}
+		else{
+			$('#feedbackMessageModal').html(data);
+			//alert (data);
+		}
+	})
+	.fail (function(dataResp, textStatus, jqXHR) {
+		console.log(jqXHR);
+		$('#feedbackMessageModal').html(dataResp);
+	});
+	return resp;
+}
 function jsonErrhandler (jqXHR, textStatus, errorThrown)
 {
 	// only handle json parse errors here, others in ajaxErrHandler
@@ -238,5 +299,5 @@ function jsonErrhandler (jqXHR, textStatus, errorThrown)
 function consoleLog (msg)
 {
 	if (debug == true)
-	  console.log(msg); // for IE there can be no console messages unless in tools mode
+	console.log(msg); // for IE there can be no console messages unless in tools mode
 }
