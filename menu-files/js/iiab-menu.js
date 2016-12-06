@@ -101,7 +101,7 @@ function procMenuItem(module) {
 	else if (module['intended_use'] == "osm")
 		menuHtml += calcOsmLink(module);
 	else
-  	menuHtml += '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' +  menuItem + ' - unknown module type</div>';
+  	menuHtml += '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' +  module['menu_item_name'] + ' - unknown module type</div>';
 
 	langClass = 'lang_' + module.lang;
 	$(menuItemDivId).addClass(langClass);
