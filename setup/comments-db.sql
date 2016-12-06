@@ -1,7 +1,5 @@
 CREATE DATABASE IF NOT EXISTS iiab_feedback;
 
-CREATE USER IF NOT EXISTS iiab_commenter@localhost IDENTIFIED BY 'g0adm1n';
-
 USE iiab_feedback;
 
 CREATE TABLE IF NOT EXISTS `comments` (
