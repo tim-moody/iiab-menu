@@ -1,0 +1,20 @@
+
+			// Put the list of menu items here
+			var menuItems = [
+			"kn-wikipedia_kn_all",
+			"kn-wiktionary_kn_all",
+			"en-kalite",
+			"en-wikipedia_en_for-schools",
+			"en-wiktionary_en_all",
+			"en-osm",
+      "en-phet_html",
+      "en-ebooks",
+      "en-wikispecies_en_all",
+      "kn-healthphone",
+      "kn-wikipedia_kn_medicine",
+      "kn-wikisource_kn_all",
+      "en-math_expression",
+      "en-olpc",
+      "en-infonet",
+      "en-ted_en_science"
+      ];

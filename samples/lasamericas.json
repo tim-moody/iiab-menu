@@ -1,0 +1,28 @@
+
+			// Put the list of menu items here
+			var menuItems = [
+"es-wikipedia_es_all",
+"es-wiktionary_es_all",
+"es-wikibooks_es_all",
+"es-wikisource_es_all",
+"es-wikiversity_es_all",
+"es-wikivoyage_es_all",
+"es-kalite",
+"en-wikipedia_for_schools",
+"en-osm",
+"es-ap_didact",
+"es-bibliofilo",
+"es-biblioteca",
+"es-cnbguatemala",
+"es-ebooks",
+"es-educalab",
+"es-GCF2015",
+"es-guatemala",
+"es-guias",
+"es-hesperian_health",
+"es-medline_plus",
+"es-soluciones",
+"es-blockly_games",
+"es-vedoque",
+"es-wikihow"
+			];

@@ -1,0 +1,18 @@
+
+			// Put the list of menu items here
+			var menuItems = [
+			"ar-wikipedia_ar_medicine",
+			"ar-wikibooks_ar_all",
+      "ar-wikipedia_ar_all",
+      "ar-wikiquote_ar_all",
+      "ar-wiktionary_ar_all",
+			"en-wikipedia_en_medicine",
+			"en-kalite_health",
+      "en-tedmed_en_all",
+      "en-hesperian_health",
+      "en-healthphone",
+      "en-infonet",
+      "en-practical_action",
+      "en-osm",
+      "en-wikipedia_en_all"
+      ];
