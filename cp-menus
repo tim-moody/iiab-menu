@@ -24,7 +24,7 @@ echo 'files copied'
 # Check for user and create if absent
 rc=`mysql --execute "SELECT Password FROM mysql.user where Host = 'localhost' and User = 'iiab_ommenter';"`
 
-if [ $rc == '' ]; then
+if [ "$rc" = "" ]; then
   mysql --execute "CREATE USER iiab_commenter@localhost IDENTIFIED BY 'g0adm1n';"
 fi
 
