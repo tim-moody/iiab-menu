@@ -9,7 +9,7 @@ if(typeof debug == 'undefined') {
 
 // constants
 var zimVersionIdx = "/common/assets/zim_version_idx.json";
-var htmlBaseUrl = "/rachel/modules/";
+var htmlBaseUrl = "/modules/";
 var webrootBaseUrl = "/";
 var apkBaseUrl = "/content/apk/";
 var menuUrl = '/iiab-menu/menu-files/';
