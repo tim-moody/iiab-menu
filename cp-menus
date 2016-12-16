@@ -1,6 +1,10 @@
 #!/bin/bash
 
 WWWROOT=/var/www/html
+if [ -f /etc/xsce/xsce.env ]; then
+  source /etc/xsce/xsce.env
+fi
+
 MENUDIR=$WWWROOT/iiab-menu
 mkdir -p $MENUDIR
 
