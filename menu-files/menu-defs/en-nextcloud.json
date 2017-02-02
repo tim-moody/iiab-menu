@@ -1,7 +1,7 @@
 {
 "intended_use" : "webroot",
 "lang" : "en",
-"logo_url" : "nextcloud.jpg",
+"logo_url" : "nextcloud.png",
 "menu_item_name" : "en-nextcloud",
 "moddir" : "nextcloud",
 "title" : "Nextcloud",
