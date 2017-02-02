@@ -54,7 +54,7 @@
 "en-wikipedia_en_for-schools",
 "en-wikipedia_en_medicine",
 "en-wikipedia_en_simple_all",
-"en-wikipedia_en_wp1-0.8",
+"en-wikipedia_en_wp1-08",
 "en-wikipedia_kn_medicine",
 "en-wikisource_en_all",
 "en-wikispecies_en_all",
