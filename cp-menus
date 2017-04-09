@@ -17,7 +17,7 @@ rsync -av samples $MENUDIR
 
 # copy sample index file if none exists
 if [ ! -e $MENUDIR/index.html ]; then
-    cp samples/index-all.html $MENUDIR/index.html
+    cp samples/sampler.html $MENUDIR/index.html
 fi
 
 # restore modified files from local
