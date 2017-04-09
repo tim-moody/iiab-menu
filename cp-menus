@@ -20,6 +20,11 @@ if [ ! -e $MENUDIR/index.html ]; then
     cp samples/sampler.html $MENUDIR/index.html
 fi
 
+# copy sample index file if none exists in home
+if [ ! -e $WWWROOT/home/index.html ]; then
+    cp samples/sampler.html $WWWROOT/home/index.html
+fi
+
 # restore modified files from local
 cp -rf $MENUDIR/local/* $MENUDIR/menu-files
 
