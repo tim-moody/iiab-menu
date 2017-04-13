@@ -100,6 +100,8 @@ function procMenuItem(module) {
 		menuHtml += calcKaliteLink(module);
 	else if (module['intended_use'] == "osm")
 		menuHtml += calcOsmLink(module);
+	else if (module['intended_use'] == "info")
+		menuHtml += calcInfoLink(module);
 	else
   	menuHtml += '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' +  module['menu_item_name'] + ' - unknown module type</div>';
 
@@ -144,6 +146,13 @@ function calcOsmLink(module){
 	return html
 }
 
+function calcInfoLink(module){
+	var href = null;
+
+	var html = calcLink(href,module);
+	return html
+}
+
 function calcLink(href,module){
 	var startPage = href;
 
@@ -154,10 +163,17 @@ function calcLink(href,module){
 	startPage = href + '/' + module['start_url'];
 
 	var html = '<div style="display: table;"><div style="display: table-row;">';
-	html+='<div class="content-icon"><a href="' + startPage + '"><img src="' + imageUrl + module.logo_url + '" alt="' + module.title + '"></div>';
-	html+='<div class="content-cell">';
-	html+='<h2><a href="' + startPage + '">' + module.title + '</a></h2>';
-	html+='<p>' + module.description + '</p>';
+	html+='<div class="content-icon">';
+	if (href != null)
+	  html+='<a href="' + startPage + '"><img src="' + imageUrl + module.logo_url + '" alt="' + module.title + '"></div>';
+	else
+		html+='<img src="' + imageUrl + module.logo_url + '" alt="' + module.title + '"></div>';
+	html+='<div class="content-cell"><h2>';
+	if (href != null)
+	  html+='<a href="' + startPage + '">' + module.title + '</a>';
+	else
+		html+=module.title;
+	html+='</h2><p>' + module.description + '</p>';
 	if (module.hasOwnProperty("apk_file"))
 	html+='<p>Click here to download <a href="' + apkBaseUrl + module.apk_file + '">' + module.apk_file + '</a></p>';
 	consoleLog('href = ' + href);
