@@ -7,6 +7,12 @@ if(typeof debug == 'undefined') {
 	debug = false;
 }
 
+// Ports used by services - not currently tied to xsce ansible
+var menuConfig = {};
+menuConfig['kiwixPort'] = "3000";
+menuConfig['kalitePort'] = "8008";
+menuConfig['calibrePort'] = "8010";
+
 // constants
 var zimVersionIdx = "/common/assets/zim_version_idx.json";
 var htmlBaseUrl = "/modules/";
@@ -98,6 +104,8 @@ function procMenuItem(module) {
 	  menuHtml += calcWebrootLink(module);
 	else if (module['intended_use'] == "kalite")
 		menuHtml += calcKaliteLink(module);
+  else if (module['intended_use'] == "calibre")
+		menuHtml += calcCalibreLink(module);
 	else if (module['intended_use'] == "osm")
 		menuHtml += calcOsmLink(module);
 	else if (module['intended_use'] == "info")
@@ -112,7 +120,7 @@ function procMenuItem(module) {
 }
 
 function calcZimLink(module){
-	var href = host + ':3000/' + zimVersions[module.zim_name] + '/';
+	var href = host + ':' + menuConfig.kiwixPort + '/' + zimVersions[module.zim_name] + '/';
 
 	var html = calcLink(href,module);
 	return html
@@ -133,7 +141,21 @@ function calcWebrootLink(module){
 }
 
 function calcKaliteLink(module){
-	var href = host + ':8008';
+	var href = host + ':' + menuConfig.kalitePort;
+
+	var html = calcLink(href,module);
+	return html
+}
+
+function calcCalibreLink(module){
+	var href = host + ':' + menuConfig.kalitePort;
+
+	var html = calcLink(href,module);
+	return html
+}
+
+function calcCalibreLink(module){
+	var href = host + ':' + menuConfig.calibrePort;
 
 	var html = calcLink(href,module);
 	return html
