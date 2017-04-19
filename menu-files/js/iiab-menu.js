@@ -9,9 +9,9 @@ if(typeof debug == 'undefined') {
 
 // Ports used by services - not currently tied to xsce ansible
 var menuConfig = {};
-menuConfig['kiwixPort'] = "3000";
-menuConfig['kalitePort'] = "8008";
-menuConfig['calibrePort'] = "8010";
+//menuConfig['kiwixPort'] = "3000";
+//menuConfig['kalitePort'] = "8008";
+//menuConfig['calibrePort'] = "8010";
 
 // constants
 var zimVersionIdx = "/common/assets/zim_version_idx.json";
@@ -19,6 +19,7 @@ var htmlBaseUrl = "/modules/";
 var webrootBaseUrl = "/";
 var apkBaseUrl = "/content/apk/";
 var menuUrl = '/iiab-menu/menu-files/';
+var configJson = '/iiab-menu/config.json';
 var defUrl = menuUrl + 'menu-defs/';
 var imageUrl = menuUrl + 'images/';
 var menuServicesUrl =  menuUrl + 'services/';
@@ -32,6 +33,13 @@ var scaffold = $.Deferred();
 var ajaxCallCount = 0;
 var i;
 
+// get config
+var getConfigJson = $.getJSON(configJson)
+.done(function( data ) {
+	//consoleLog(data);
+menuConfig = data;})
+.fail(jsonErrhandler);
+
 // get name to instance index for zim files
 var getZimVersions = $.getJSON(zimVersionIdx)
 .done(function( data ) {
@@ -39,7 +47,7 @@ var getZimVersions = $.getJSON(zimVersionIdx)
 zimVersions = data;})
 .fail(jsonErrhandler);
 
-$.when(scaffold, getZimVersions).then(procMenu);
+$.when(scaffold, getZimVersions, getConfigJson).then(procMenu);
 
 // create scaffolding for menu items
 var html = "";
