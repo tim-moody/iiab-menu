@@ -15,6 +15,11 @@ rsync -av common $WWWROOT
 rsync -av menu-files $MENUDIR
 rsync -av samples $MENUDIR
 
+# copy config file if none exists
+if [ ! -e $MENUDIR/config.json ]; then
+    cp config.json $MENUDIR
+fi
+
 # copy sample index file if none exists
 if [ ! -e $MENUDIR/index.html ]; then
     cp samples/sampler.html $MENUDIR/index.html
