@@ -1,5 +1,6 @@
 {
   "kiwixPort" : "3000",
   "kalitePort" : "8008",
-  "calibrePort" : "8010"
+  "calibrePort" : "8010",
+  "apkBaseUrl" : "http://download.iiab.io/content/"
 }
