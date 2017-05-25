@@ -152,7 +152,12 @@ function calcWebrootLink(module){
 }
 
 function calcKaliteLink(module){
-	var href = host + ':' + menuConfig.kalitePort;
+	var portRef = module.lang + '-kalitePort';
+	var href = host + ':'
+	if (menuConfig.hasOwnProperty(portRef))
+		href += menuConfig[portRef];
+	else
+		href += menuConfig['en-kalitePort'];
 
 	var html = calcLink(href,module);
 	return html
