@@ -1,10 +1,14 @@
 // iiab-menu.js
-// copyright 2016 Tim Moody
+// copyright 2017 Tim Moody
 
 // debug
 
 if(typeof debug == 'undefined') {
 	debug = false;
+}
+
+if(typeof forceFullDisplay == 'undefined') { // allow override in index.html
+	forceFullDisplay = false;
 }
 
 // Ports used by services - not currently tied to xsce ansible
@@ -26,6 +30,10 @@ var menuServicesUrl =  menuUrl + 'services/';
 
 var host = 'http://' + window.location.hostname;
 var isMobile = detectMob();
+var showFullDisplay = true; // show full display if not mobile device or if force Full Display
+if (isMobile && !forceFullDisplay)
+  showFullDisplay = false;
+
 var menuHtml = "";
 var menuDefs = {};
 var zimVersions = {};
@@ -62,8 +70,13 @@ for (i = 0; i < menuItems.length; i++) {
 	html += '<div id="' + menuItemDivId + '" class="content-item" dir="auto">&emsp;Attempting to load ' + menu_item_name + ' </div>';
 }
 $("#content").html(html);
+$(".toggleExtraHtml").toggle(showFullDisplay);
 scaffold.resolve();
 
+// click function for full display toggle
+$( "#toggleFullDisplay" ).click(function() {
+  $(".toggleExtraHtml").toggle();
+});
 
 function procMenu() {
 	for (var i = 0; i < menuItems.length; i++) {
@@ -215,7 +228,7 @@ function calcLink(href,module){
 	if (module.hasOwnProperty("apk_file"))
 	html+='<p>Click here to download <a href="' + apkBaseUrl + module.apk_file + '">' + module.apk_file + '</a></p>';
 	consoleLog('href = ' + href);
-	html += '<div id="' + module.menu_id + '-htmlf"></div>'; // scaffold for extra html
+	html += '<div id="' + module.menu_id + '-htmlf" class="toggleExtraHtml"></div>'; // scaffold for extra html
 	html+='</div></div></div>';
 
 	return html
@@ -228,7 +241,7 @@ function detectMob() {
 }
 
 function getExtraHtml(module) {
-	if (module.hasOwnProperty("extra_html") && (module['extra_html'] != "") && (!isMobile)){
+	if (module.hasOwnProperty("extra_html") && (module['extra_html'] != "")){
 		consoleLog('starting get extra');
 		consoleLog(module.extra_html);
 		ajaxCallCount += 1;
