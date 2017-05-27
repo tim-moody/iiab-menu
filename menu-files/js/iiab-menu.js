@@ -259,6 +259,7 @@ function getExtraHtml(module) {
 			add_html = add_html.replace(re, module.href);
 			menuItemHtmlfDivId = "#" + module.menu_id + '-htmlf';
 			consoleLog(menuItemHtmlfDivId);
+			$(".toggleExtraHtml").toggle(showFullDisplay);
 			$(menuItemHtmlfDivId).html(add_html);
 			checkMenuDone();
 		})
