@@ -32,6 +32,15 @@ Any files changed in WEBROOT/iiab-menu/menu-files will be overwritten by cp-menu
 to copy them to WEBROOT/iiab-menu/local in order to preserve them. It does this by making a list of all files
 during cp-menus with date and size in order to compare on the next copy.
 
+### Customizing the Deployment
+
+WEBROOT/iiab-menu/config.json contains operating parameters such as
+
+* kiwixPort
+* kalitePort
+* calibrePort
+* apkBaseUrl
+
 ### Editing or Customizing Menu Items
 
 The following json fields are currently implemented:
