@@ -6,7 +6,7 @@ iiab-menu is a menuing system that uses json files for each menu item, which are
 based on an html file that contains an array of the menu items to load. This file will usually be named index.html, but can have
 any name.
 
-The menu files nominally in /var/www/html/iiab-menu, but the index file can be anywhere as the path to supporting files is absolute.
+The menu files are nominally in /library/www/html/iiab-menu, but the index file can be anywhere as the path to supporting files is absolute.
 Several sample files are included in the samples directory.
 
 A menu item, a set of links to one piece of content such as the wikipedia, is defined by a 'menu-def' json file.  There is a sample in the samples
@@ -17,17 +17,20 @@ directory. There may also be an optional html file that contains free form html 
 A script, cp-menus, is provided to deploy all of these files and does the following:
 
 * creates any needed directories
-* copies files such as jquery to /var/www/html/common
-* copies files from the repo to /var/www/html/iiab-menu
-* copies /var/www/html/iiab-menu/local/menu-defs over the files from the repo
-* if /var/www/html/iiab-menu/index.html does not exist, copies samples/index-all.html there
+* copies files such as jquery to WEBROOT/common
+* copies files from the repo to WEBROOT/iiab-menu
+* copies WEBROOT/iiab-menu/local/menu-defs over the files from the repo
+* if WEBROOT/iiab-menu/index.html does not exist, copies samples/index-all.html there
+* on subsequent runs it also copies any files with a different date from the original from menu-defs to local
+
 
 To get the latest version of files please do a git pull on this repo and rerun cp-menus.
 
 ### Please Note
 
-Any files in /var/www/html/iiab-menu/menu-files will be overwritten by cp-menus.  So please copy
-any changes you make to /var/www/html/iiab-menu/local in order to preserve them.
+Any files changed in WEBROOT/iiab-menu/menu-files will be overwritten by cp-menus.  Therefore cp-menus will attempt
+to copy them to WEBROOT/iiab-menu/local in order to preserve them. It does this by making a list of all files
+during cp-menus with date and size in order to compare on the next copy.
 
 ### Editing or Customizing Menu Items
 
