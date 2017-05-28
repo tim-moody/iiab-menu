@@ -5,5 +5,5 @@
   "fr-kalitePort" : "8006",
   "calibrePort" : "8010",
   "apkBaseUrl" : "http://download.iiab.io/content/",
-  "mobilePortraitSize" : "60px"
+  "mobilePortraitSize" : "48px"
 }
