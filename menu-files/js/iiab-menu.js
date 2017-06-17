@@ -76,7 +76,7 @@ for (i = 0; i < menuItems.length; i++) {
 	menuItemDivId = i.toString() + "-" + menu_item_name;
 	menuDefs[menu_item_name]['menu_id'] = menuItemDivId;
 
-	html += '<div id="' + menuItemDivId + '" class="content-item" dir="auto">&emsp;Attempting to load ' + menu_item_name + ' </div>';
+	html += '<div id="' + menuItemDivId + '" class="content-item col-xs-12 col-sm-12 col-md-12 col-lg-12" dir="auto">&emsp;Attempting to load ' + menu_item_name + ' </div>';
 }
 $("#content").html(html);
 $(".toggleExtraHtml").toggle(showFullDisplay);
@@ -116,7 +116,7 @@ function getMenuDef(menuItem) {
 		checkMenuDone();
 	})
 	.fail(function (jqXHR, textStatus, errorThrown){
-		var menuHtml = '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' + menuItem + ' - file not found or improperly formatted</div>';
+		var menuHtml = '<div class="content-item">' + menuItem + ' - file not found or improperly formatted</div>';
 		$("#" + menuId).html(menuHtml);
 		checkMenuDone();
 		jsonErrhandler (jqXHR, textStatus, errorThrown); // probably a json error
@@ -145,7 +145,7 @@ function procMenuItem(module) {
 	else if (module['intended_use'] == "info")
 		menuHtml += calcInfoLink(module);
 	else
-  	menuHtml += '<div class="content-item" style="padding:10px; color: red; font-size: 1.5em">' +  module['menu_item_name'] + ' - unknown module type</div>';
+  	menuHtml += '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-item">' +  module['menu_item_name'] + ' - unknown module type</div>';
 
 	langClass = 'lang_' + module.lang;
 	$(menuItemDivId).addClass(langClass);
@@ -223,13 +223,13 @@ function calcLink(href,module){
 	if (module.hasOwnProperty("start_url"))
 	startPage = href + '/' + module['start_url'];
 
-	var html = '<div style="display: table;"><div style="display: table-row;">';
-	html+='<div class="content-icon">';
+	var html = '';
+	html+='<div class="content-icon col-xs-6 col-sm-3 col-md-2 col-lg-2 col-xs-offset-3 col-sm-offset-0">';
 	if (href != null)
 	  html+='<a href="' + startPage + '"><img src="' + imageUrl + module.logo_url + '" alt="' + module.title + '"></div>';
 	else
 		html+='<img src="' + imageUrl + module.logo_url + '" alt="' + module.title + '"></div>';
-	html+='<div class="content-cell"><h2>';
+	html+='<div class="content-cell col-xs-12 col-sm-9 col-md-10 col-lg-10"><h2>';
 	if (href != null)
 	  html+='<a href="' + startPage + '">' + module.title + '</a>';
 	else
@@ -239,7 +239,7 @@ function calcLink(href,module){
 	html+='<p>Click here to download <a href="' + apkBaseUrl + module.apk_file + '">' + module.apk_file + '</a></p>';
 	consoleLog('href = ' + href);
 	html += '<div id="' + module.menu_id + '-htmlf" class="toggleExtraHtml"></div>'; // scaffold for extra html
-	html+='</div></div></div>';
+	html+='</div>';
 
 	return html
 }
